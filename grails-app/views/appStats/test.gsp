@@ -121,18 +121,18 @@
                     // the IE Style
                     var fileName = element.value;
                     /*
-                    * try
-    {
-        var fso  = new ActiveXObject("Scripting.FileSystemObject");
-        var fh = fso.OpenTextFile(filename, 1);
-        var contents = fh.ReadAll();
-        fh.Close();
-        return contents;
-    }
-    catch (Exception)
-    {
-        return "Cannot open file :(";
-    }*/
+                     * try
+                     {
+                     var fso  = new ActiveXObject("Scripting.FileSystemObject");
+                     var fh = fso.OpenTextFile(filename, 1);
+                     var contents = fh.ReadAll();
+                     fh.Close();
+                     return contents;
+                     }
+                     catch (Exception)
+                     {
+                     return "Cannot open file :(";
+                     }*/
                 }
             }
         };

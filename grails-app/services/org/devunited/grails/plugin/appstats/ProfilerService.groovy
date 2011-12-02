@@ -16,7 +16,7 @@ class ProfilerService {
                 timeStart: request.AS_hops.get(0).startTime,
                 timeEnd: System.currentTimeMillis(),
                 hopsJSON: generateHopsJSON(request.AS_hops)
-        ).save(flush:true)
+        ).save(flush: true)
     }
 
     public void registerRequestToProfiler(request, String controllerName, String actionName, Map params) {

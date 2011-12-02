@@ -9,7 +9,7 @@ class AppStatsController {
 
     def hop = {
         render "hopped"
-        AS_RequestLog.list().each {AS_RequestLog rl->
+        AS_RequestLog.list().each {AS_RequestLog rl ->
             render "<br>${rl.hopsJSON}"
         }
     }
