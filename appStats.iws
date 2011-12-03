@@ -15,13 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6d8cbc1-4b87-49ad-8130-5aff08f4dd52" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appStats-grailsPlugins.iml" afterPath="$PROJECT_DIR$/appStats-grailsPlugins.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appStats.iws" afterPath="$PROJECT_DIR$/appStats.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.properties" afterPath="$PROJECT_DIR$/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/Config.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp" afterPath="$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp" />
     </list>
     <ignored path="appStats.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,7 +79,7 @@
       <file leaf-file-name="console.gsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="28" selection-start="986" selection-end="986" vertical-scroll-proportion="0.58939093">
+            <state line="15" column="39" selection-start="569" selection-end="569" vertical-scroll-proportion="0.44204322">
               <folding />
             </state>
           </provider>
@@ -677,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="986" selection-end="986" vertical-scroll-proportion="0.58939093">
+        <state line="15" column="39" selection-start="569" selection-end="569" vertical-scroll-proportion="0.44204322">
           <folding />
         </state>
       </provider>

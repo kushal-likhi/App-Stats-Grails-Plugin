@@ -13,7 +13,7 @@
             } else {
                 $("#command").val("");
                 if (command == "clear") {
-                    $("#result").html("<span style='color:#97D0E8;'>" + hostName + ":$</span>")
+                    $("#result").html("")
                 } else {
                     $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:command}, function(response) {
                         if (response) {
