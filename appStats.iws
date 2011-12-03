@@ -15,19 +15,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6d8cbc1-4b87-49ad-8130-5aff08f4dd52" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appStats-grailsPlugins.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appStats.iml" afterPath="$PROJECT_DIR$/appStats.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appStats-grailsPlugins.iml" afterPath="$PROJECT_DIR$/appStats-grailsPlugins.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appStats.iws" afterPath="$PROJECT_DIR$/appStats.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.properties" afterPath="$PROJECT_DIR$/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/Config.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppStatsController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppStatsController.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ProfilerService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ProfilerService.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/appStats/test.gsp" afterPath="$PROJECT_DIR$/grails-app/views/appStats/test.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/error.gsp" afterPath="$PROJECT_DIR$/grails-app/views/error.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/WEB-INF/sitemesh.xml" afterPath="$PROJECT_DIR$/web-app/WEB-INF/sitemesh.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/WEB-INF/tld/c.tld" afterPath="$PROJECT_DIR$/web-app/WEB-INF/tld/c.tld" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/WEB-INF/tld/fmt.tld" afterPath="$PROJECT_DIR$/web-app/WEB-INF/tld/fmt.tld" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/WEB-INF/tld/spring.tld" afterPath="$PROJECT_DIR$/web-app/WEB-INF/tld/spring.tld" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" />
     </list>
     <ignored path="appStats.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,37 +81,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="console.gsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="28" selection-start="986" selection-end="986" vertical-scroll-proportion="0.58939093">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ServerInformationController.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="79" selection-start="420" selection-end="420" vertical-scroll-proportion="-6.521739">
+            <state line="20" column="49" selection-start="569" selection-end="569" vertical-scroll-proportion="-13.043478">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UtilController.groovy" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/UtilController.groovy">
+      <file leaf-file-name="ConsoleService.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ConsoleService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="64" selection-start="159" selection-end="159" vertical-scroll-proportion="0.19924098">
+            <state line="9" column="152" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppStatsController.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppStatsController.groovy">
+      <file leaf-file-name="SystemCommandExecutor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/SystemCommandExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="-7.173913">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerInformation.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/ServerInformation.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="12" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
+            <state line="125" column="23" selection-start="4489" selection-end="4489" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,48 +120,9 @@
       <file leaf-file-name="ServerInformationService.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="22" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
+            <state line="54" column="96" selection-start="1891" selection-end="1928" vertical-scroll-proportion="0.0">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IPInfo.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/IPInfo.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="4" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringUtil.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/utils/org/devunited/grails/plugin/appstats/StringUtil.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="23" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilerService.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ProfilerService.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="59" selection-start="232" selection-end="704" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AS_RequestLog.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/domain/org/devunited/grails/plugin/appstats/AS_RequestLog.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="6" selection-start="52" selection-end="52" vertical-scroll-proportion="-0.6818182">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-            <state />
           </provider>
         </entry>
       </file>
@@ -185,21 +140,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ProfilerService.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" />
-        <option value="$PROJECT_DIR$/src/groovy/IPInfo.groovy" />
-        <option value="$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/IPInfo.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/utils/StringUtils.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/utils/org/devunited/grails/plugin/appstats/StringUtil.groovy" />
         <option value="$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/ServerInformation.groovy" />
         <option value="$PROJECT_DIR$/src/java/SystemCommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/java/ThreadedStreamHandler.java" />
         <option value="$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/SystemCommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/ThreadedStreamHandler.java" />
         <option value="$PROJECT_DIR$/src/java/CustomSlider.java" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/UtilController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/jsbuild/demo/Constructor.js" />
+        <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp" />
+        <option value="$USER_HOME$/.grails/1.3.7/projects/appStats/plugins/jsbuild-1.3.1.8/grails-app/taglib/org/devunited/jsbuild/grails/plugin/JsBuildTagLib.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/CommandResult.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/UtilController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ConsoleService.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp" />
       </list>
     </option>
   </component>
@@ -265,14 +221,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appstats" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -354,6 +302,70 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="appstats" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats-grailsPlugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats-grailsPlugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsbuild-1.3.1.8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats-grailsPlugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsbuild-1.3.1.8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appStats-grailsPlugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsbuild-1.3.1.8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yuicompressor-2.4.6.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -503,7 +515,7 @@
     <frame x="2" y="25" width="1364" height="718" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -524,6 +536,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -571,107 +584,100 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///opt/grails/lib/groovy-all-1.7.8.jar!/org/codehaus/groovy/runtime/DefaultGroovyMethods.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="35" selection-start="19483" selection-end="19483" vertical-scroll-proportion="0.34839925" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/rt.jar!/java/util/List.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="54" selection-start="294" selection-end="294" vertical-scroll-proportion="0.31634447" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.grails/1.3.7/projects/appStats/plugins/tomcat-1.3.7/lib/tomcat-core.jar!/org/apache/catalina/util/ServerInfo.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.14285715" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/rt.jar!/java/lang/Thread.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="29" selection-start="3424" selection-end="3424" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/jsbuild/demo/Constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="4" selection-start="16" selection-end="16" vertical-scroll-proportion="0.02640845" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="166" selection-end="166" vertical-scroll-proportion="0.1056338" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/index.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="10" selection-start="75" selection-end="75" vertical-scroll-proportion="-4.5652175" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-app/js/jsbuild/jsb.demo.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-app/js/jsbuild/jsb.demo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/CommandResult.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="18" selection-start="128" selection-end="128" vertical-scroll-proportion="0.11320755" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/ThreadedStreamHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="42" selection-start="3013" selection-end="3013" vertical-scroll-proportion="0.0">
+        <state line="137" column="23" selection-start="3785" selection-end="3785" vertical-scroll-proportion="0.42727274">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/SystemCommandExecutor.java">
+    <entry file="file://$USER_HOME$/.grails/1.3.7/projects/appStats/plugins/jsbuild-1.3.1.8/src/groovy/org/devunited/utils/DevUnitedBeanBagUser.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="9" selection-start="2154" selection-end="2154" vertical-scroll-proportion="0.33272728">
+        <state line="22" column="18" selection-start="506" selection-end="506" vertical-scroll-proportion="0.6">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/ServerInformation.groovy">
+    <entry file="file://$USER_HOME$/.grails/1.3.7/projects/appStats/plugins/jsbuild-1.3.1.8/grails-app/taglib/org/devunited/jsbuild/grails/plugin/JsBuildTagLib.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="12" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
+        <state line="16" column="59" selection-start="434" selection-end="434" vertical-scroll-proportion="0.23550087">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/org/devunited/grails/plugin/appstats/AS_RequestLog.groovy">
+    <entry file="file://$USER_HOME$/.grails/1.3.7/projects/appStats/plugins/jsbuild-1.3.1.8/src/groovy/org/devunited/utils/BeanBag.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="6" selection-start="52" selection-end="52" vertical-scroll-proportion="-0.6818182">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ProfilerService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="59" selection-start="232" selection-end="704" vertical-scroll-proportion="0.0">
+        <state line="11" column="6" selection-start="234" selection-end="234" vertical-scroll-proportion="0.28998244">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/utils/org/devunited/grails/plugin/appstats/StringUtil.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ConsoleService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="23" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/org/devunited/grails/plugin/appstats/IPInfo.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="22" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppStatsController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="204" selection-end="204" vertical-scroll-proportion="-7.173913">
+        <state line="9" column="152" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/ServerInformationController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="79" selection-start="420" selection-end="420" vertical-scroll-proportion="-6.521739">
+        <state line="20" column="49" selection-start="569" selection-end="569" vertical-scroll-proportion="-13.043478">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/UtilController.groovy">
+    <entry file="file://$PROJECT_DIR$/src/java/org/devunited/grails/plugin/appstats/SystemCommandExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="64" selection-start="159" selection-end="159" vertical-scroll-proportion="0.19924098">
+        <state line="125" column="23" selection-start="4489" selection-end="4489" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/ServerInformationService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="96" selection-start="1891" selection-end="1928" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/serverInformation/console.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="28" selection-start="986" selection-end="986" vertical-scroll-proportion="0.58939093">
           <folding />
         </state>
       </provider>
@@ -684,7 +690,7 @@
           <value>
             <GrailsSettings>
               <option name="buildConfigCrc" value="5987499" />
-              <option name="pluginDependenciesCrc" value="-1576236816" />
+              <option name="pluginDependenciesCrc" value="-1351876007" />
               <option name="properties">
                 <map>
                   <entry key="grails.project.class.dir" value="target/classes" />

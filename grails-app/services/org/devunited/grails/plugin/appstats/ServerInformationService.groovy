@@ -21,21 +21,22 @@ class ServerInformationService {
     }
 
     List<String> getInfoFromCommand(String command) {
-        SystemCommandExecutor commandExecutor = runCommandAndGetInfo(command)
-        StringBuilder commandResult = commandExecutor.getStandardOutputFromCommand();
+        CommandResult result = runCommandAndGetInfo(command)
+        StringBuilder commandResult = result.commandExecutor.getStandardOutputFromCommand();
         List<String> info = commandResult.toString().tokenize("\n")
         info = info.collect {StringUtil.replaceExtraSpacesWithSingleSpace(it)}
         return info
     }
 
-    SystemCommandExecutor runCommandAndGetInfo(String command) {
+    CommandResult runCommandAndGetInfo(String command) {
         List<String> cmd = []
         cmd.add("/bin/sh")
         cmd.add("-c")
         cmd.add(command);
-        SystemCommandExecutor commandExecutor = new SystemCommandExecutor(cmd);
-        int result = commandExecutor.executeCommand();
-        return commandExecutor
+        CommandResult commandResult = new CommandResult()
+        commandResult.commandExecutor = new SystemCommandExecutor(cmd);
+        commandResult.result = commandResult.commandExecutor.executeCommand();
+        return commandResult
     }
 
     List<List> getCPUInfoSubList(List cpuInfo, Integer count) {
