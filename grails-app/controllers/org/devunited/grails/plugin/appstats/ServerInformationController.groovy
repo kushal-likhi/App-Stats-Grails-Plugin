@@ -14,11 +14,14 @@ class ServerInformationController {
 
 
     def console = {
-
+        String presentWorkingDir = new File(".").getCanonicalPath();
+        render(view: "console", model: [workingDir: presentWorkingDir])
     }
 
     def commandResult = {
         String output = consoleService.executeCommand(params.command)
-        render output
+        output.eachLine {
+            render "${it}<br/>"
+        }
     }
 }

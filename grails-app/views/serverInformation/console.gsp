@@ -3,29 +3,54 @@
 <head><title>Server Console</title>
     <g:javascript library="jquery" plugin="jquery"/>
     <script type="text/javascript">
+        String.prototype.startsWith = function(str) {
+            return (this.match("^" + str) == str);
+        };
         var hostName = "";
+        var uiPath = "";
+        var pwd = "";
         $(document).ready(function() {
+            pwd = $("#pwd").text();
             hostName = window.location.host;
+            uiPath = hostName + ":" + pwd
         });
         function executeCommand(command) {
-            if (command == "") {
-                alert("Please Enter Command");
-            } else {
-                $("#command").val("");
-                if (command == "clear") {
-                    $("#result").html("")
-                } else {
-                    $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:command}, function(response) {
-                        if (response) {
-                            $("#result").append("<span style='color:#97D0E8;'>" + hostName + ":$</span> " + command + "<br/>");
-                            var ls = response.split("\n");
-                            for (var i = 0; i <= ls.length - 1; i++) {
-                                $("#result").append(ls[i] + "<br/>");
-                            }
-                        }
-                    });
-                }
+            var modifiedCommand;
+            if (command.startsWith("cd")) {
+                cdCommandHandling(command)
             }
+            else if (command == "clear") {
+                $("#result").html("")
+            }
+            else {
+                modifiedCommand = "cd " + pwd + " ; " + command;
+                $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:modifiedCommand}, function(response) {
+                    if (response) {
+                        $("#result").append("<span style='color:#97D0E8;'>" + uiPath + "$</span> " + command + "<br/>");
+                        $("#result").append(response + "<br/>");
+                        var result = document.getElementById("result");
+                        result.scrollTop = result.scrollHeight;
+                    }
+                });
+            }
+            $("#command").val("");
+        }
+
+        function cdCommandHandling(command) {
+            var error;
+            var originalCommand = command;
+            command = "cd " + pwd + " ; " + command + " ; " + "pwd";
+            $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:command}, function(response) {
+                if (response.replace("<br/>", "") == pwd) {
+                    error = "bash: " + originalCommand + ": No such file or directory <br/>";
+                }
+                pwd = response.replace("<br/>", "");
+                uiPath = hostName + ":" + pwd;
+                $("#result").append("<span style='color:#97D0E8;'>" + uiPath + "$</span> <br/>");
+                if (error != null) {
+                    $("#result").append(error);
+                }
+            });
         }
     </script>
 </head>
@@ -44,6 +69,8 @@
        style="font-size: 14px; font-weight: bold; color: white; background-color:#777;float: right; padding: 0; margin: 0; width: 90%; left: 100px; height: 7%; top: 94%;border-bottom: 4px ridge gray">
 <input style="font-size: 16px; font-weight: bold; color: white; background-color: #777; padding-left:20px; width: 10%; left: 0; height: 7%; top: 94%;border-bottom: 4px ridge gray"
        value="Command" readonly="">
+
+<div id="pwd" style="display: none">${workingDir}</div>
 
 </body>
 </html>
