@@ -8,7 +8,7 @@ class IPInfo {
         InetAddress address = InetAddress.getLocalHost();
         this.internalIPAddress = address.getHostAddress();
         this.hostName = address.hostName;
-        this.externalIPAddress = WANIpAddress()
+        /*this.externalIPAddress = WANIpAddress()*/
     }
 
     String WANIpAddress() {

@@ -1,8 +1,12 @@
 dataSource {
     pooled = true
-    driverClassName = "org.hsqldb.jdbcDriver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    dialect = org.hibernate.dialect.MySQL5InnoDBDialect // must be set for transactions to work!
+    dbCreate = "create-drop"
+    url = "jdbc:mysql://localhost:3306/app?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+    username = "root"
+    password = "igdefault"
+
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -10,23 +14,3 @@ hibernate {
     cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
 }
 // environment specific settings
-environments {
-    development {
-        dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:hsqldb:mem:devDB"
-        }
-    }
-    test {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:hsqldb:mem:testDb"
-        }
-    }
-    production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
-        }
-    }
-}

@@ -7,27 +7,35 @@ class ProfilerService {
     static transactional = false
 
     public void submitRequestForProfiling(request) {
-        new AS_RequestLog(
-                userAgent: request.getHeader("user-agent"),
-                clientIP: request.getRemoteAddr(),
-                URL: request.getRequestURL().toString().replaceAll(/.dispatch$/, ''),
-                action: request.AS_hops.get(0).action,
-                controller: request.AS_hops.get(0).controller,
-                timeStart: request.AS_hops.get(0).startTime,
-                timeEnd: System.currentTimeMillis(),
-                hopsJSON: generateHopsJSON(request.AS_hops)
-        ).save(flush: true)
+        if (!request.AS_RecordId) {
+            request.AS_RecordId = new RequestLog(
+                    userAgent: request.getHeader("user-agent"),
+                    clientIP: request.getRemoteAddr(),
+                    URL: request.forwardURI,
+                    action: request.AS_hops.get(0).action,
+                    controller: request.AS_hops.get(0).controller,
+                    timeStart: request.AS_hops.get(0).startTime,
+                    timeEnd: System.currentTimeMillis(),
+                    hopsJSON: generateHopsJSON(request.AS_hops)
+            ).save(flush: true).id
+        } else {
+            RequestLog requestLog = RequestLog.get(request.AS_RecordId.toLong())
+            requestLog.hopsJSON = generateHopsJSON(request.AS_hops)
+            requestLog.timeEnd = System.currentTimeMillis()
+            requestLog.save(flush: true)
+        }
     }
 
     public void registerRequestToProfiler(request, String controllerName, String actionName, Map params) {
-        if (request.AS_isProfiled) {
+        if (request.isStatsProfiled) {
             request.AS_hops.add([
                     controller: controllerName,
                     action: actionName,
                     startTime: System.currentTimeMillis()
             ])
         } else {
-            request.AS_isProfiled = true
+            request.isStatsProfiled = true
+            request.AS_RecordId = false
             request.AS_hops = [[
                     controller: controllerName,
                     action: actionName,
@@ -58,3 +66,4 @@ class ProfilerService {
         return (json as JSON)
     }
 }
+
