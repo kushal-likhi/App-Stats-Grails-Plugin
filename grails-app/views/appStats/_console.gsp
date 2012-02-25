@@ -22,7 +22,7 @@
                 }
                 else {
                     modifiedCommand = "cd " + pwd + " ; " + command;
-                    $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:modifiedCommand}, function(response) {
+                    $.post("${createLink(controller:'appStats',action:'commandResult')}", {command:modifiedCommand}, function(response) {
                         if (response) {
                             $("#result").append("<span style='color:#97D0E8;'>" + uiPath + "$</span> " + command + "<br/>");
                             $("#result").append(response + "<br/>");
@@ -38,7 +38,7 @@
                 var error;
                 var originalCommand = command;
                 command = "cd " + pwd + " ; " + command + " ; " + "pwd";
-                $.post("${createLink(controller:'serverInformation',action:'commandResult')}", {command:command}, function(response) {
+                $.post("${createLink(controller:'appStats',action:'commandResult')}", {command:command}, function(response) {
                     if (response.replace("<br/>", "") == pwd) {
                         error = "bash: " + originalCommand + ": No such file or directory <br/>";
                     }
