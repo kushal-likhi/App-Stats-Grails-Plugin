@@ -1,9 +1,11 @@
 package org.devunited.grails.plugin.appstats
 
+import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
 
 class ServerInformationController {
     def serverInformationService
     def consoleService
+    def appStatsService
 
     def index = {
         IPInfo ipInfo = serverInformationService.getIPAddressAndHostName()
@@ -11,7 +13,11 @@ class ServerInformationController {
         List memInfo = serverInformationService.getMemoryInfo()
         ServerInformation serverInformation = serverInformationService.getServerInformation()
         String presentWorkingDir = new File(".").getCanonicalPath();
-        render(view: 'index', model: [cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, workingDir: presentWorkingDir])
+        List<DefaultGrailsControllerClass> controllers = grailsApplication.controllerClasses
+        List<RequestLog> requestLogs = RequestLog.list()
+        ApplicationStats applicationStats = appStatsService.summary(controllers, requestLogs)
+        VisitorStats totalVisitorStats = appStatsService.totalVisitorStats(requestLogs, applicationStats.controllerHits)
+        render(view: 'index', model: [applicationStats: applicationStats, cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, workingDir: presentWorkingDir, totalVisitorStats: totalVisitorStats])
     }
 
     def commandResult = {
@@ -31,6 +37,15 @@ class ServerInformationController {
         forward(action: "cde2")
     }
     def cde2 = {
-        render "bye"
+        session.invalidate()
     }
+
+    def test = {
+        List<Integer> ls = RequestLog.getAll().hopsJSON*.size().sort()
+        RequestLog requestLog = RequestLog.createCriteria().get {
+            sizeGe("hopsJSON", 206)
+        }
+    }
+
+
 }

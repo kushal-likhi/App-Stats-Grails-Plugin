@@ -1,6 +1,9 @@
 package org.devunited.grails.plugin.appstats
 
 import grails.converters.JSON
+import org.springframework.web.context.request.RequestContextHolder
+import javax.servlet.http.HttpSession
+import org.hibernate.Session
 
 class ProfilerService {
 
@@ -23,6 +26,25 @@ class ProfilerService {
             requestLog.hopsJSON = generateHopsJSON(request.AS_hops)
             requestLog.timeEnd = System.currentTimeMillis()
             requestLog.save(flush: true)
+        }
+        setSessionForVisitsOfAPerson(request.getRemoteAddr())
+    }
+
+
+    public void setSessionForVisitsOfAPerson(String clientIP) {
+        HttpSession session = getSession()
+        if (session.userVisit == null) {
+            session.userVisit = clientIP
+            UserVisit userVisit = UserVisit.findByClientIP(clientIP)
+            if (userVisit) {
+                userVisit.visitCount = userVisit.visitCount + 1
+                userVisit.save(flush: true)
+            } else {
+                userVisit = new UserVisit()
+                userVisit.clientIP = clientIP
+                userVisit.visitCount = 1
+                userVisit.save(flush: true)
+            }
         }
     }
 
@@ -65,5 +87,10 @@ class ProfilerService {
         }
         return (json as JSON)
     }
+
+    private HttpSession getSession() {
+        return RequestContextHolder.currentRequestAttributes().getSession()
+    }
+
 }
 

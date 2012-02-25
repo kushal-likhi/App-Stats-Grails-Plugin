@@ -1,4 +1,4 @@
-<div id="page2" class="clearfix" style="display: none">
+<div id="page3" class="clearfix" style="display: none">
     <div class="yellowBox clearfix ">
         <script type="text/javascript">
             String.prototype.startsWith = function(str) {

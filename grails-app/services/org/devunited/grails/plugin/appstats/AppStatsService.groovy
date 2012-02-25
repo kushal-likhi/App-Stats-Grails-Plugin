@@ -8,7 +8,7 @@ class AppStatsService {
 
     static transactional = false
     public String controllerName
-    Integer hitCount = 0
+    Long hitCount = 0
 
     Map<String, List> getAllControllersWithTheirActions(List<DefaultGrailsControllerClass> controllers) {
         List allActions = []
@@ -27,7 +27,18 @@ class AppStatsService {
         return controllerWithTheirActions
     }
 
+    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers,List<RequestLog> requestLogs) {
+        ApplicationStats applicationStats = new ApplicationStats()
+        Map<String, List> controllerWithTheirActions = getAllControllersWithTheirActions(controllers)
+        applicationStats.controllerActionHits = getControllersActionHitCount(controllerWithTheirActions, requestLogs)
+        applicationStats.controllerAndActionForUniqueVisitor = getControllerAndActionHitsOfAVisitor(controllerWithTheirActions, requestLogs)
+        applicationStats.averageTimeOnParticularAction = averageTimeOnAParticularAction(controllerWithTheirActions, requestLogs)
+        applicationStats.controllerHits = getControllersHitCount(controllers, requestLogs)
+        return  applicationStats
+    }
+
     Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
+        hitCount = 0
         Map<String, Long> controllerHits = [:]
         controllers.each {controller ->
             controllerName = StringUtil.toLowerCaseFirstCharacter(controller.name)
@@ -38,6 +49,7 @@ class AppStatsService {
     }
 
     Map<String, Map> getControllersActionHitCount(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+        hitCount = 0
         Map<String, Map> controllerActionHits = [:]
         Map<String, Integer> actionHits = [:]
         controllerWithTheirActions.each {controller, actions ->
@@ -53,10 +65,11 @@ class AppStatsService {
     }
 
     Map<String, Map> getControllerAndActionHitsOfAVisitor(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+        hitCount = 0
         Map<String, Map> controllerAndActionForUniqueVisitor = [:]
         Map<String, Map> uniqueVisitorHits = [:]
         Map<String, Long> actionWithHitCountForUniqueVisitors = [:]
-        List<String> uniqueIPs = requestLogs.grep {it.clientIP}.clientIP.unique()
+        List<String> uniqueIPs = uniqueVisitors(requestLogs);
         uniqueIPs.each {ip ->
             controllerWithTheirActions.each {controller, actions ->
                 controllerName = StringUtil.toLowerCaseFirstCharacter(controller)
@@ -73,11 +86,54 @@ class AppStatsService {
         return uniqueVisitorHits
     }
 
+    VisitorStats totalVisitorStats(List<RequestLog> requestLogs, Map<String, Long> controllerHits) {
+        VisitorStats totalVisitorStats = new VisitorStats()
+        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
+        totalVisitorStats.totalHits = totalHits(controllerHits)
+        totalVisitorStats.noOfVisits = noOfVisits()
+        return totalVisitorStats
+    }
 
-    Map<String, Map> AverageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
-        Integer averageTime = 0
+    Map<String, VisitorStats> forEveryMonthVisitorStats() {
+        Date date = new Date()
+
+    }
+
+    VisitorStats monthlyVisitorStats(List<RequestLog> requestLogs, Map<String, Long> controllerHits) {
+        VisitorStats totalVisitorStats = new VisitorStats()
+        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
+        totalVisitorStats.totalHits = totalHits(controllerHits)
+        totalVisitorStats.noOfVisits = noOfVisits()
+        return totalVisitorStats
+    }
+
+
+    List<String> uniqueVisitors(List<RequestLog> requestLogs) {
+        return requestLogs.grep {it.clientIP}.clientIP.unique()
+    }
+
+    Integer totalHits(Map<String, Long> controllerHits) {
+        hitCount = 0
+        controllerHits.each {
+            hitCount = hitCount + it.value
+        }
+        return hitCount
+    }
+
+    Integer noOfVisits() {
+        Integer visitCount = UserVisit.createCriteria().get {
+            projections {
+                sum("visitCount")
+            }
+        }
+        return visitCount
+    }
+
+    Map<String, Map> averageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+        Double averageTime = 0
+        hitCount = 0
         Map<String, Map> averageTimeOnParticularAction = [:]
-        Map<String, Integer> controllerActionTime = [:]
+        Map<String, Double> controllerActionTime = [:]
         List<RequestLog> filteredRequestLog = []
         controllerWithTheirActions.each {controller, actions ->
             controllerName = StringUtil.toLowerCaseFirstCharacter(controller)
@@ -87,12 +143,11 @@ class AppStatsService {
                     hitCount = it.timeEnd - it.timeStart
                     averageTime = hitCount + averageTime
                 }
-                controllerActionTime[actionName] = averageTime
+                controllerActionTime[actionName] = averageTime / filteredRequestLog.size()
             }
             averageTimeOnParticularAction[controller] = controllerActionTime
             controllerActionTime = [:]
         }
         return averageTimeOnParticularAction
     }
-
 }
