@@ -3,7 +3,6 @@ package org.devunited.grails.plugin.appstats
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.PropertyAccessorFactory
 import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
-import com.sun.xml.internal.bind.v2.TODO
 
 class AppStatsService {
 
@@ -23,7 +22,11 @@ class AppStatsService {
     Long hitCount = 0     //todo remove
 
     public List<RequestLog> getRequestLogs() {
-        if (!requestLogList || (md5 != ("${reportMonth}${reportYear}".encodeAsMD5()))) requestLogList = RequestLog.findByDateCreatedBetween()//Todo Implement
+        if (!requestLogList || (md5 != ("${reportMonth}${reportYear}".encodeAsMD5()))) {
+            Date startDate, endDate
+            (startDate, endDate) = getStartAndEndDateOfAMonth();
+            requestLogList = RequestLog.findAllByDateCreatedBetween(startDate, endDate)
+        }
         md5 = "${reportMonth}${reportYear}".encodeAsMD5()
         requestLogList
     }
@@ -50,17 +53,17 @@ class AppStatsService {
         return controllerWithTheirActions
     }
 
-    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
+    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers) {
         ApplicationStats applicationStats = new ApplicationStats()
         Map<String, List> controllerWithTheirActions = getAllControllersWithTheirActions(controllers)
-        applicationStats.controllerActionHits = getControllersActionHitCount(controllerWithTheirActions, requestLogs)
-        applicationStats.controllerAndActionForUniqueVisitor = getControllerAndActionHitsOfAVisitor(controllerWithTheirActions, requestLogs)
-        applicationStats.averageTimeOnParticularAction = averageTimeOnAParticularAction(controllerWithTheirActions, requestLogs)
-        applicationStats.controllerHits = getControllersHitCount(controllers, requestLogs)
+        applicationStats.controllerActionHits = getControllersActionHitCount(controllerWithTheirActions)
+        applicationStats.controllerAndActionForUniqueVisitor = getControllerAndActionHitsOfAVisitor(controllerWithTheirActions)
+        applicationStats.averageTimeOnParticularAction = averageTimeOnAParticularAction(controllerWithTheirActions)
+        applicationStats.controllerHits = getControllersHitCount(controllers)
         return applicationStats
     }
 
-    Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
+    Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers) {
         hitCount = 0
         Map<String, Long> controllerHits = [:]
         controllers.each {controller ->
@@ -71,7 +74,7 @@ class AppStatsService {
         return controllerHits
     }
 
-    Map<String, Map> getControllersActionHitCount(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+    Map<String, Map> getControllersActionHitCount(Map<String, List> controllerWithTheirActions) {
         hitCount = 0
         Map<String, Map> controllerActionHits = [:]
         Map<String, Integer> actionHits = [:]
@@ -87,12 +90,12 @@ class AppStatsService {
         return controllerActionHits
     }
 
-    Map<String, Map> getControllerAndActionHitsOfAVisitor(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+    Map<String, Map> getControllerAndActionHitsOfAVisitor(Map<String, List> controllerWithTheirActions) {
         hitCount = 0
         Map<String, Map> controllerAndActionForUniqueVisitor = [:]
         Map<String, Map> uniqueVisitorHits = [:]
         Map<String, Long> actionWithHitCountForUniqueVisitors = [:]
-        List<String> uniqueIPs = uniqueVisitors(requestLogs);
+        List<String> uniqueIPs = uniqueVisitors();
         uniqueIPs.each {ip ->
             controllerWithTheirActions.each {controller, actions ->
                 controllerName = StringUtil.toLowerCaseFirstCharacter(controller)
@@ -109,12 +112,10 @@ class AppStatsService {
         return uniqueVisitorHits
     }
 
-    VisitorStats totalVisitorStats(List<RequestLog> requestLogs, Map<String, Long> controllerHits) {
+    VisitorStats totalVisitorStats(List<DefaultGrailsControllerClass> controllers) {
         VisitorStats totalVisitorStats = new VisitorStats()
-        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
-        totalVisitorStats.totalHits = totalHits(controllerHits)
-        println "..........................................."
-        println noOfVisits()
+        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors().size()
+        totalVisitorStats.totalHits = totalHits(getControllersHitCount(controllers))
         totalVisitorStats.noOfVisits = noOfVisits()
         return totalVisitorStats
     }
@@ -124,16 +125,16 @@ class AppStatsService {
 
     }
 
-    VisitorStats monthlyVisitorStats(List<RequestLog> requestLogs, Map<String, Long> controllerHits) {
+    VisitorStats monthlyVisitorStats(Map<String, Long> controllerHits) {
         VisitorStats totalVisitorStats = new VisitorStats()
-        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
+        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors().size()
         totalVisitorStats.totalHits = totalHits(controllerHits)
         /*totalVisitorStats.noOfVisits = noOfVisits()*/
         return totalVisitorStats
     }
 
 
-    List<String> uniqueVisitors(List<RequestLog> requestLogs) {
+    List<String> uniqueVisitors() {
         return requestLogs.grep {it.clientIP}.clientIP.unique()
     }
 
@@ -154,7 +155,7 @@ class AppStatsService {
         return uniqueClientSessionIds ? uniqueClientSessionIds.size() : 0
     }
 
-    Map<String, Map> averageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {
+    Map<String, Map> averageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions) {
         Double averageTime = 0
         hitCount = 0
         Map<String, Map> averageTimeOnParticularAction = [:]
@@ -175,4 +176,13 @@ class AppStatsService {
         }
         return averageTimeOnParticularAction
     }
+
+    List<Date> getStartAndEndDateOfAMonth() {
+        Date endDate = new Date(reportYear, reportMonth, 31)
+        [
+                new Date(reportYear, reportMonth, 1),
+                endDate.getDate() < 5 ? endDate - endDate.getDate() : endDate
+        ]
+    }
+
 }

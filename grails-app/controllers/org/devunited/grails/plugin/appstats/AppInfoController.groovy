@@ -11,15 +11,15 @@ class AppInfoController {
 
     def index = {
         if (!params.month) params.month = new Date().getMonth()
-        if (!params.month) params.month = new Date().getYear()
+        if (!params.year) params.year = new Date().getYear()
         appStatsService.initialize(params)
         render view: 'index', model: [
-                applicationStats: appStatsService.summary(grailsApplication.controllerClasses, RequestLog.list()),
+                applicationStats: appStatsService.summary(grailsApplication.controllerClasses as List),
+                totalVisitorStats: appStatsService.totalVisitorStats(grailsApplication.controllerClasses as List),
                 cpuInfo: serverInformationService.getCPUInfo(),
                 memInfo: serverInformationService.getMemoryInfo(),
                 serverInformation: serverInformationService.getServerInformation(),
                 workingDir: new File(".").getCanonicalPath(),
-                totalVisitorStats: appStatsService.totalVisitorStats(RequestLog.list(), appStatsService.summary(grailsApplication.controllerClasses, RequestLog.list()).controllerHits),
                 ipInfo: serverInformationService.getIPAddressAndHostName()
         ]
     }
