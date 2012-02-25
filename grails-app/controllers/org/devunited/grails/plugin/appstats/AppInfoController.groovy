@@ -32,6 +32,10 @@ class AppInfoController {
         }
     }
 
+    def ipOfUrl = {
+        render serverInformationService.getIpForUrl(params.url)
+    }
+
     def abc1 = {
         redirect(action: "cde1")
     }

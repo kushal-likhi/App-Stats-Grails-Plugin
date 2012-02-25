@@ -100,15 +100,21 @@
                         <table class="appStatsData" width="100%" cellspacing="0" cellpadding="2" border="1">
                             <tbody><tr>
                                 <td width="80" bgcolor="#4477dd">Controllers And Actions</td>
-                                <td width="25%" bgcolor="#ffb055">Unique visitors</td>
-                                <td width="25%" bgcolor="#f8e880">Number of visits</td>
-                                <td width="25%" bgcolor="#66f0ff">Hits</td>
+                                <td width="14%" bgcolor="#ffb055">Unique visitors</td>
+                                <td width="12%" bgcolor="#f8e880">Number of visits</td>
+                                <td width="12%" bgcolor="#f8e880">Minimum Time (in ms)</td>
+                                <td width="12%" bgcolor="#f8e880">Maximum Time (in ms)</td>
+                                <td width="12%" bgcolor="#f8e880">Average Time (in ms)</td>
+                                <td width="12%" bgcolor="#66f0ff">Hits</td>
                             </tr>
                             <g:each in="${controllerAndActionList}" var="pageInfo">
                                 <tr>
                                     <td>${pageInfo.pageURL}</td>
                                     <td>${pageInfo.uniqueVisitor}</td>
                                     <td>${pageInfo.noOfVisits}</td>
+                                    <td>${pageInfo.minTime}</td>
+                                    <td>${pageInfo.maxTime}</td>
+                                    <td>${pageInfo.avgTime}</td>
                                     <td>${pageInfo.totalHits}</td>
                                 </tr>
                             </g:each>

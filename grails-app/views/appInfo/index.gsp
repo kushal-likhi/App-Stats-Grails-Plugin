@@ -254,7 +254,7 @@ td {
     </ul>
 
     <g:render template="stats" model="[stats: totalVisitorStats,pageInfoList:pageInfoList,controllerAndActionList:controllerAndActionList,controllerInfoList:controllerInfoList]"/>
-    <g:render template="serverInfo" model="[cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation]"/>
+    <g:render template="serverInfo" model="[cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, ipInfo:ipInfo]"/>
     <g:render template="console" model="[workingDir: workingDir]"/>
 
 </div>

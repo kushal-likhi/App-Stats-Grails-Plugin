@@ -3,6 +3,7 @@ package org.devunited.grails.plugin.appstats
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.PropertyAccessorFactory
 import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
+import grails.converters.JSON
 
 class AppStatsService {
 
@@ -223,7 +224,15 @@ class AppStatsService {
     List<PageInfo> getAllControllerAndActionInformation() {
         List<PageInfo> pageInfoList = []
         requestLogs.groupBy {"Controller: ${it.controller}, Action: ${it.action}"}.each {String controllerAndAction, List<RequestLog> logs ->
+
+            List hops = logs.collect {
+                def json = JSON.parse(it.hopsJSON)
+                (json.last().exitTime.toLong()) - (json.first().entryTime.toLong())
+            }
             PageInfo pageInfo = new PageInfo()
+            pageInfo.maxTime = hops.max() as Long
+            pageInfo.minTime = hops.min() as Long
+            pageInfo.avgTime = (hops.sum() / hops.size())
             pageInfo.pageURL = controllerAndAction
             pageInfo.noOfVisits = logs.clone().unique {it.sessionId}.size()
             pageInfo.uniqueVisitor = logs.clone().unique {it.clientIP}.size()

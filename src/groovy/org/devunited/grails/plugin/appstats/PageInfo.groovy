@@ -5,4 +5,7 @@ class PageInfo {
     String uniqueVisitor
     String noOfVisits
     String totalHits
+    Long maxTime
+    Long minTime
+    Long avgTime
 }
