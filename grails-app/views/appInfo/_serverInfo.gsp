@@ -1,13 +1,18 @@
 <div id="page2" class="clearfix" style="display: none">
     <div class="yellowBox clearfix ">
-        <div class="nav"><img src="${resource(dir: 'images', file: 'ip.jpeg')}" alt="ip" height="20" width="20" class="imgClass">IP Information
+        <div class="nav"><img src="${resource(dir: 'images', file: 'ip.jpeg')}" alt="ip" height="20" width="20"
+                              class="imgClass">IP Information
             <a href="#" class="click" id="1">Click To Show/Hide</a>
         </div>
 
         <div class="noDisplay infoText" id="info1">
+            Internal IP Address: ${ipInfo.internalIPAddress}<br>
+            External IP Address: <span id='externalIpInfo'></span><br>
+            Host Name: ${ipInfo.hostName} <br>
         </div>
 
-        <div class="nav"><img src="${resource(dir: 'images', file: 'cpu.jpeg')}" alt="cpu" height="20" width="20" class="imgClass">CPU Information
+        <div class="nav"><img src="${resource(dir: 'images', file: 'cpu.jpeg')}" alt="cpu" height="20" width="20"
+                              class="imgClass">CPU Information
             <a href="#" class="click" id="2">Click To Show/Hide</a>
         </div>
 
@@ -20,7 +25,8 @@
             </g:each>
         </div>
 
-        <div class="nav"><img src="${resource(dir: 'images', file: 'ram.jpeg')}" alt="ram" height="20" width="20" class="imgClass">Memory Information
+        <div class="nav"><img src="${resource(dir: 'images', file: 'ram.jpeg')}" alt="ram" height="20" width="20"
+                              class="imgClass">Memory Information
             <a href="#" class="click" id="3">Click To Show/Hide</a>
         </div>
 
@@ -30,7 +36,8 @@
             </g:each>
         </div>
 
-        <div class="nav"><img src="${resource(dir: 'images', file: 'other.jpeg')}" alt="other" height="20" width="20" class="imgClass">Other Information
+        <div class="nav"><img src="${resource(dir: 'images', file: 'other.jpeg')}" alt="other" height="20" width="20"
+                              class="imgClass">Other Information
             <a href="#" class="click" id="4">Click To Show/Hide</a>
         </div>
 
@@ -47,9 +54,12 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".click").click(function() {
+    $(".click").click(function () {
         var id = $(this).attr("id");
         $("#info" + id).toggle()
         return false;
+    });
+    jQuery.get("${createLink(controller: 'appInfo', action: 'ifOfUrl')}", {url:window.location.href}, function (data) {
+        jQuery("#externalIpInfo").html(data);
     });
 </script>

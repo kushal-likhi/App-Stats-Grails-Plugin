@@ -73,6 +73,12 @@ class ServerInformationService {
         StringBuilder output = commandResult.result ? commandResult.commandExecutor.getStandardErrorFromCommand() : commandResult.commandExecutor.getStandardOutputFromCommand();
         return output
     }
+
+    String getIpForUrl(String url) {
+        String res = executeCommand("ping -c1 ${url}")
+        println res
+        res.find(/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/)
+    }
 }
 
 

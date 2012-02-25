@@ -1,13 +1,13 @@
 <div id="page3" class="clearfix" style="display: none">
     <div class="yellowBox clearfix ">
         <script type="text/javascript">
-            String.prototype.startsWith = function(str) {
+            String.prototype.startsWith = function (str) {
                 return (this.match("^" + str) == str);
             };
             var hostName = "";
             var uiPath = "";
             var pwd = "";
-            $(document).ready(function() {
+            $(document).ready(function () {
                 pwd = $("#pwd").text();
                 hostName = window.location.host;
                 uiPath = hostName + ":" + pwd
@@ -22,7 +22,7 @@
                 }
                 else {
                     modifiedCommand = "cd " + pwd + " ; " + command;
-                    $.post("${createLink(controller:'appStats',action:'commandResult')}", {command:modifiedCommand}, function(response) {
+                    $.post("${createLink(controller:'appInfo',action:'commandResult')}", {command:modifiedCommand}, function (response) {
                         if (response) {
                             $("#result").append("<span style='color:#97D0E8;'>" + uiPath + "$</span> " + command + "<br/>");
                             $("#result").append(response + "<br/>");
@@ -38,7 +38,7 @@
                 var error;
                 var originalCommand = command;
                 command = "cd " + pwd + " ; " + command + " ; " + "pwd";
-                $.post("${createLink(controller:'appStats',action:'commandResult')}", {command:command}, function(response) {
+                $.post("${createLink(controller:'appStats',action:'commandResult')}", {command:command}, function (response) {
                     if (response.replace("<br/>", "") == pwd) {
                         error = "bash: " + originalCommand + ": No such file or directory <br/>";
                     }

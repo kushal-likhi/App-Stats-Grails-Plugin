@@ -256,7 +256,7 @@ td {
 
     <g:render template="applicationInfo" model="[applicationStats: applicationStats]"/>
     <g:render template="userInfo" model="[totalVisitorStats: totalVisitorStats]"/>
-    <g:render template="serverInfo" model="[cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation]"/>
+    <g:render template="serverInfo" model="[cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, ipInfo:ipInfo]"/>
     <g:render template="console" model="[workingDir: workingDir]"/>
 
 </div>
