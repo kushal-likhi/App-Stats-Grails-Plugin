@@ -17,10 +17,6 @@ class AppStatsService {
     private Integer reportYear
     private String md5 = ""
 
-    public String controllerName   //TODO remove
-
-    Long hitCount = 0     //todo remove
-
     public List<RequestLog> getRequestLogs() {
         if (!requestLogList || (md5 != ("${reportMonth}${reportYear}".encodeAsMD5()))) {
             Date startDate, endDate
@@ -64,7 +60,8 @@ class AppStatsService {
     }
 
     Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers) {
-        hitCount = 0
+        Long hitCount = 0
+        String controllerName
         Map<String, Long> controllerHits = [:]
         controllers.each {controller ->
             controllerName = StringUtil.toLowerCaseFirstCharacter(controller.name)
@@ -75,7 +72,8 @@ class AppStatsService {
     }
 
     Map<String, Map> getControllersActionHitCount(Map<String, List> controllerWithTheirActions) {
-        hitCount = 0
+        Long hitCount = 0
+        String controllerName
         Map<String, Map> controllerActionHits = [:]
         Map<String, Integer> actionHits = [:]
         controllerWithTheirActions.each {controller, actions ->
@@ -91,7 +89,8 @@ class AppStatsService {
     }
 
     Map<String, Map> getControllerAndActionHitsOfAVisitor(Map<String, List> controllerWithTheirActions) {
-        hitCount = 0
+        Long hitCount = 0
+        String controllerName
         Map<String, Map> controllerAndActionForUniqueVisitor = [:]
         Map<String, Map> uniqueVisitorHits = [:]
         Map<String, Long> actionWithHitCountForUniqueVisitors = [:]
@@ -139,7 +138,7 @@ class AppStatsService {
     }
 
     Integer totalHits(Map<String, Long> controllerHits) {
-        hitCount = 0
+        Long hitCount = 0
         controllerHits.each {
             hitCount = hitCount + it.value
         }
@@ -157,7 +156,8 @@ class AppStatsService {
 
     Map<String, Map> averageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions) {
         Double averageTime = 0
-        hitCount = 0
+        Long hitCount = 0
+        String controllerName
         Map<String, Map> averageTimeOnParticularAction = [:]
         Map<String, Double> controllerActionTime = [:]
         List<RequestLog> filteredRequestLog = []

@@ -15,7 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6d8cbc1-4b87-49ad-8130-5aff08f4dd52" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppInfoController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppInfoController.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy" />
     </list>
     <ignored path="appStats.iws" />
@@ -101,7 +100,7 @@
       <file leaf-file-name="AppInfoController.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppInfoController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="24" selection-start="275" selection-end="275" vertical-scroll-proportion="0.30458716">
+            <state line="16" column="53" selection-start="447" selection-end="447" vertical-scroll-proportion="0.38715595">
               <folding />
             </state>
           </provider>
@@ -110,7 +109,7 @@
       <file leaf-file-name="AppStatsService.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="17" selection-start="1001" selection-end="1001" vertical-scroll-proportion="-12.64">
+            <state line="63" column="8" selection-start="2683" selection-end="2683" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#46#90#0" expanded="true" />
               </folding>
@@ -146,8 +145,8 @@
         <option value="$PROJECT_DIR$/grails-app/domain/org/devunited/grails/plugin/appstats/RequestLog.groovy" />
         <option value="$PROJECT_DIR$/application.properties" />
         <option value="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppStatsController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppInfoController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy" />
       </list>
     </option>
   </component>
@@ -676,7 +675,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/services/org/devunited/grails/plugin/appstats/AppStatsService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="17" selection-start="1001" selection-end="1001" vertical-scroll-proportion="-12.64">
+        <state line="63" column="8" selection-start="2683" selection-end="2683" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#46#90#0" expanded="true" />
           </folding>
@@ -685,7 +684,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/org/devunited/grails/plugin/appstats/AppInfoController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="24" selection-start="275" selection-end="275" vertical-scroll-proportion="0.30458716">
+        <state line="16" column="53" selection-start="447" selection-end="447" vertical-scroll-proportion="0.38715595">
           <folding />
         </state>
       </provider>
