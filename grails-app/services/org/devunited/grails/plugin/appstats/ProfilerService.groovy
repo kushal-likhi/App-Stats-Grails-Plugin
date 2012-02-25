@@ -19,7 +19,8 @@ class ProfilerService {
                     timeStart: request.AS_hops.get(0).startTime,
                     timeEnd: System.currentTimeMillis(),
                     hopsJSON: generateHopsJSON(request.AS_hops),
-                    initialParams: request.AS_params
+                    initialParams: request.AS_params,
+                    sessionId: session.id
             ).save(flush: true, failOnError: true).id
         } else {
             RequestLog requestLog = RequestLog.get(request.AS_RecordId.toLong())
@@ -27,11 +28,10 @@ class ProfilerService {
             requestLog.timeEnd = System.currentTimeMillis()
             requestLog.save(flush: true)
         }
-        setSessionForVisitsOfAPerson(request.getRemoteAddr())
+        /*setSessionForVisitsOfAPerson(request.getRemoteAddr())*/
     }
 
-
-    public void setSessionForVisitsOfAPerson(String clientIP) {
+    /*public void setSessionForVisitsOfAPerson(String clientIP) {
         HttpSession session = getSession()
         if (session.userVisit == null) {
             session.userVisit = clientIP
@@ -46,7 +46,7 @@ class ProfilerService {
                 userVisit.save(flush: true)
             }
         }
-    }
+    }*/
 
     public void registerRequestToProfiler(request, String controllerName, String actionName, Map params) {
         if (request.isStatsProfiled) {

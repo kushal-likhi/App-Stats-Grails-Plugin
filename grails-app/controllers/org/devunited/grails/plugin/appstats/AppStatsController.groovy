@@ -18,6 +18,7 @@ class AppStatsController {
         List<RequestLog> requestLogs = RequestLog.list()
         ApplicationStats applicationStats = appStatsService.summary(controllers, requestLogs)
         VisitorStats totalVisitorStats = appStatsService.totalVisitorStats(requestLogs, applicationStats.controllerHits)
+        println totalVisitorStats.noOfVisits
         render(view: 'index', model: [applicationStats: applicationStats, cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, workingDir: presentWorkingDir, totalVisitorStats: totalVisitorStats])
     }
 
@@ -42,10 +43,6 @@ class AppStatsController {
     }
 
     def test = {
-        List<Integer> ls = RequestLog.getAll().hopsJSON*.size().sort()
-        RequestLog requestLog = RequestLog.createCriteria().get {
-            sizeGe("hopsJSON", 206)
-        }
     }
 
 

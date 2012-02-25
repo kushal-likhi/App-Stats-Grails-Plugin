@@ -27,14 +27,14 @@ class AppStatsService {
         return controllerWithTheirActions
     }
 
-    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers,List<RequestLog> requestLogs) {
+    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
         ApplicationStats applicationStats = new ApplicationStats()
         Map<String, List> controllerWithTheirActions = getAllControllersWithTheirActions(controllers)
         applicationStats.controllerActionHits = getControllersActionHitCount(controllerWithTheirActions, requestLogs)
         applicationStats.controllerAndActionForUniqueVisitor = getControllerAndActionHitsOfAVisitor(controllerWithTheirActions, requestLogs)
         applicationStats.averageTimeOnParticularAction = averageTimeOnAParticularAction(controllerWithTheirActions, requestLogs)
         applicationStats.controllerHits = getControllersHitCount(controllers, requestLogs)
-        return  applicationStats
+        return applicationStats
     }
 
     Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
@@ -90,6 +90,8 @@ class AppStatsService {
         VisitorStats totalVisitorStats = new VisitorStats()
         totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
         totalVisitorStats.totalHits = totalHits(controllerHits)
+        println "..........................................."
+        println noOfVisits()
         totalVisitorStats.noOfVisits = noOfVisits()
         return totalVisitorStats
     }
@@ -103,7 +105,7 @@ class AppStatsService {
         VisitorStats totalVisitorStats = new VisitorStats()
         totalVisitorStats.uniqueVisitorsCount = uniqueVisitors(requestLogs).size()
         totalVisitorStats.totalHits = totalHits(controllerHits)
-        totalVisitorStats.noOfVisits = noOfVisits()
+        /*totalVisitorStats.noOfVisits = noOfVisits()*/
         return totalVisitorStats
     }
 
@@ -121,12 +123,12 @@ class AppStatsService {
     }
 
     Integer noOfVisits() {
-        Integer visitCount = UserVisit.createCriteria().get {
+        List<String> uniqueClientSessionIds = RequestLog.createCriteria().list {
             projections {
-                sum("visitCount")
+                groupProperty("sessionId")
             }
         }
-        return visitCount
+        return uniqueClientSessionIds ? uniqueClientSessionIds.size() : 0
     }
 
     Map<String, Map> averageTimeOnAParticularAction(Map<String, List> controllerWithTheirActions, List<RequestLog> requestLogs) {

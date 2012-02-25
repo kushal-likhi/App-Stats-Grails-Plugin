@@ -11,6 +11,7 @@ class RequestLog {
     String controller
     String hopsJSON
     Map initialParams
+    String sessionId
 
     Long timeStart
     Long timeEnd
