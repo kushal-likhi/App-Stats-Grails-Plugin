@@ -67,6 +67,12 @@ class ServerInformationService {
         List<String> serverDetails = getInfoFromCommand(command)
         return serverDetails ? serverDetails?.first() : ""
     }
+
+    String executeCommand(String command) {
+        CommandResult commandResult = runCommandAndGetInfo(command)
+        StringBuilder output = commandResult.result ? commandResult.commandExecutor.getStandardErrorFromCommand() : commandResult.commandExecutor.getStandardOutputFromCommand();
+        return output
+    }
 }
 
 

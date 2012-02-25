@@ -3,12 +3,35 @@ package org.devunited.grails.plugin.appstats
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.PropertyAccessorFactory
 import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
+import com.sun.xml.internal.bind.v2.TODO
 
 class AppStatsService {
 
+    static scope = "session"
+    static proxy = true
     static transactional = false
-    public String controllerName
-    Long hitCount = 0
+
+
+    private List<RequestLog> requestLogList
+
+    private Integer reportMonth
+    private Integer reportYear
+    private String md5 = ""
+
+    public String controllerName   //TODO remove
+
+    Long hitCount = 0     //todo remove
+
+    public List<RequestLog> getRequestLogs() {
+        if (!requestLogList || (md5 != ("${reportMonth}${reportYear}".encodeAsMD5()))) requestLogList = RequestLog.findByDateCreatedBetween()//Todo Implement
+        md5 = "${reportMonth}${reportYear}".encodeAsMD5()
+        requestLogList
+    }
+
+    public initialize(params) {
+        reportMonth = params.month
+        reportYear = params.year
+    }
 
     Map<String, List> getAllControllersWithTheirActions(List<DefaultGrailsControllerClass> controllers) {
         List allActions = []
@@ -27,14 +50,14 @@ class AppStatsService {
         return controllerWithTheirActions
     }
 
-    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers,List<RequestLog> requestLogs) {
+    ApplicationStats summary(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {
         ApplicationStats applicationStats = new ApplicationStats()
         Map<String, List> controllerWithTheirActions = getAllControllersWithTheirActions(controllers)
         applicationStats.controllerActionHits = getControllersActionHitCount(controllerWithTheirActions, requestLogs)
         applicationStats.controllerAndActionForUniqueVisitor = getControllerAndActionHitsOfAVisitor(controllerWithTheirActions, requestLogs)
         applicationStats.averageTimeOnParticularAction = averageTimeOnAParticularAction(controllerWithTheirActions, requestLogs)
         applicationStats.controllerHits = getControllersHitCount(controllers, requestLogs)
-        return  applicationStats
+        return applicationStats
     }
 
     Map<String, Long> getControllersHitCount(List<DefaultGrailsControllerClass> controllers, List<RequestLog> requestLogs) {

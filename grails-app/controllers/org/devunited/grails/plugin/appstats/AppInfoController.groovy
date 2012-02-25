@@ -1,30 +1,34 @@
 package org.devunited.grails.plugin.appstats
 
-import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
 
 class AppInfoController {
+
+
     def serverInformationService
-    def consoleService
     def appStatsService
 
     static defaultAction = "index"
 
 
+
+
     def index = {
-        IPInfo ipInfo = serverInformationService.getIPAddressAndHostName()
-        List<List> cpuInfo = serverInformationService.getCPUInfo()
-        List memInfo = serverInformationService.getMemoryInfo()
-        ServerInformation serverInformation = serverInformationService.getServerInformation()
-        String presentWorkingDir = new File(".").getCanonicalPath();
-        List<DefaultGrailsControllerClass> controllers = grailsApplication.controllerClasses
-        List<RequestLog> requestLogs = RequestLog.list()
-        ApplicationStats applicationStats = appStatsService.summary(controllers, requestLogs)
-        VisitorStats totalVisitorStats = appStatsService.totalVisitorStats(requestLogs, applicationStats.controllerHits)
-        render(view: 'index', model: [applicationStats: applicationStats, cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation, workingDir: presentWorkingDir, totalVisitorStats: totalVisitorStats])
+        if (!params.month) params.month = new Date().getMonth()
+        if (!params.month) params.month = new Date().getYear()
+        appStatsService.initialize(params)
+        render view: 'index', model: [
+                applicationStats: appStatsService.summary(grailsApplication.controllerClasses, RequestLog.list()),
+                cpuInfo: serverInformationService.getCPUInfo(),
+                memInfo: serverInformationService.getMemoryInfo(),
+                serverInformation: serverInformationService.getServerInformation(),
+                workingDir: new File(".").getCanonicalPath(),
+                totalVisitorStats: appStatsService.totalVisitorStats(RequestLog.list(), appStatsService.summary(grailsApplication.controllerClasses, RequestLog.list()).controllerHits),
+                ipInfo: serverInformationService.getIPAddressAndHostName()
+        ]
     }
 
     def commandResult = {
-        String output = consoleService.executeCommand(params.command)
+        String output = serverInformationService.executeCommand(params.command)
         output.eachLine {
             render "${it}<br/>"
         }
