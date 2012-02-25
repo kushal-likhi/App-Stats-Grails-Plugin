@@ -10,8 +10,6 @@ class AppInfoController {
     static defaultAction = "index"
 
     def index = {
-        if (!params.month) params.month = new Date().getMonth()
-        if (!params.year) params.year = new Date().getYear()
         appStatsService.initialize(params)
         render view: 'index', model: [
                 applicationStats: appStatsService.summary(grailsApplication.controllerClasses as List),
@@ -20,7 +18,10 @@ class AppInfoController {
                 memInfo: serverInformationService.getMemoryInfo(),
                 serverInformation: serverInformationService.getServerInformation(),
                 workingDir: new File(".").getCanonicalPath(),
-                ipInfo: serverInformationService.getIPAddressAndHostName()
+                ipInfo: serverInformationService.getIPAddressAndHostName(),
+                pageInfoList: appStatsService.getAllPagesInformation(),
+                controllerInfoList: appStatsService.getAllControllerInformation(),
+                controllerAndActionList: appStatsService.getAllControllerAndActionInformation()
         ]
     }
 
@@ -45,11 +46,17 @@ class AppInfoController {
     }
 
     def test = {
-        List<Integer> ls = RequestLog.getAll().hopsJSON*.size().sort()
-        RequestLog requestLog = RequestLog.createCriteria().get {
-            sizeGe("hopsJSON", 206)
+        List<PageInfo> pageInfoList = []
+        appStatsService.requestLogs.groupBy {it.URL}.each {String url, List<RequestLog> logs ->
+            PageInfo pageInfo = new PageInfo()
+            pageInfo.pageURL = url
+            pageInfo.noOfVisits = logs.clone().unique {it.sessionId}.size()
+            pageInfo.uniqueVisitor = logs.clone().unique {it.clientIP}.size()
+            pageInfo.totalHits = logs.size()
+            pageInfoList.add(pageInfo)
         }
+        render "yo"
+        render pageInfoList*.totalHits
     }
-
 
 }

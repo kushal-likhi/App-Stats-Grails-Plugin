@@ -18,18 +18,27 @@ class AppStatsService {
     private String md5 = ""
 
     public List<RequestLog> getRequestLogs() {
+        Date startDate, endDate
+        (startDate, endDate) = getStartAndEndDateOfAMonth();
         if (!requestLogList || (md5 != ("${reportMonth}${reportYear}".encodeAsMD5()))) {
-            Date startDate, endDate
-            (startDate, endDate) = getStartAndEndDateOfAMonth();
             requestLogList = RequestLog.findAllByDateCreatedBetween(startDate, endDate)
         }
+        if (RequestLog.countByDateCreatedBetween(startDate, endDate) != requestLogList.size()) requestLogList = RequestLog.findAllByDateCreatedBetween(startDate, endDate)
         md5 = "${reportMonth}${reportYear}".encodeAsMD5()
         requestLogList
     }
 
     public initialize(params) {
-        reportMonth = params.month
-        reportYear = params.year
+        if (!params.date_month) {
+            reportMonth = new Date().getMonth()
+        } else {
+            reportMonth = params.int('date_month') - 1
+        }
+        if (!params.date_year) {
+            reportYear = new Date().getYear()
+        } else {
+            reportYear = params.int('date_year') - 1900
+        }
     }
 
     Map<String, List> getAllControllersWithTheirActions(List<DefaultGrailsControllerClass> controllers) {
@@ -111,14 +120,6 @@ class AppStatsService {
         return uniqueVisitorHits
     }
 
-    VisitorStats totalVisitorStats(List<DefaultGrailsControllerClass> controllers) {
-        VisitorStats totalVisitorStats = new VisitorStats()
-        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors().size()
-        totalVisitorStats.totalHits = totalHits(getControllersHitCount(controllers))
-        totalVisitorStats.noOfVisits = noOfVisits()
-        return totalVisitorStats
-    }
-
     Map<String, VisitorStats> forEveryMonthVisitorStats() {
         Date date = new Date()
 
@@ -134,7 +135,7 @@ class AppStatsService {
 
 
     List<String> uniqueVisitors() {
-        return requestLogs.grep {it.clientIP}.clientIP.unique()
+        return requestLogs?.groupBy {it.clientIP}?.keySet()?.toList()
     }
 
     Integer totalHits(Map<String, Long> controllerHits) {
@@ -183,6 +184,53 @@ class AppStatsService {
                 new Date(reportYear, reportMonth, 1),
                 endDate.getDate() < 5 ? endDate - endDate.getDate() : endDate
         ]
+    }
+
+    VisitorStats totalVisitorStats(List<DefaultGrailsControllerClass> controllers) {
+        VisitorStats totalVisitorStats = new VisitorStats()
+        totalVisitorStats.uniqueVisitorsCount = uniqueVisitors().size()
+        totalVisitorStats.totalHits = totalHits(getControllersHitCount(controllers))
+        totalVisitorStats.noOfVisits = noOfVisits()
+        return totalVisitorStats
+    }
+
+    List<PageInfo> getAllPagesInformation() {
+        List<PageInfo> pageInfoList = []
+        requestLogs.groupBy {it.URL}.each {String url, List<RequestLog> logs ->
+            PageInfo pageInfo = new PageInfo()
+            pageInfo.pageURL = url
+            pageInfo.noOfVisits = logs.clone().unique {it.sessionId}.size()
+            pageInfo.uniqueVisitor = logs.clone().unique {it.clientIP}.size()
+            pageInfo.totalHits = logs.size()
+            pageInfoList.add(pageInfo)
+        }
+        return pageInfoList
+    }
+
+    List<PageInfo> getAllControllerInformation() {
+        List<PageInfo> pageInfoList = []
+        requestLogs.groupBy {it.controller}.each {String controller, List<RequestLog> logs ->
+            PageInfo pageInfo = new PageInfo()
+            pageInfo.pageURL = controller
+            pageInfo.noOfVisits = logs.clone().unique {it.sessionId}.size()
+            pageInfo.uniqueVisitor = logs.clone().unique {it.clientIP}.size()
+            pageInfo.totalHits = logs.size()
+            pageInfoList.add(pageInfo)
+        }
+        return pageInfoList
+    }
+
+    List<PageInfo> getAllControllerAndActionInformation() {
+        List<PageInfo> pageInfoList = []
+        requestLogs.groupBy {"Controller: ${it.controller}, Action: ${it.action}"}.each {String controllerAndAction, List<RequestLog> logs ->
+            PageInfo pageInfo = new PageInfo()
+            pageInfo.pageURL = controllerAndAction
+            pageInfo.noOfVisits = logs.clone().unique {it.sessionId}.size()
+            pageInfo.uniqueVisitor = logs.clone().unique {it.clientIP}.size()
+            pageInfo.totalHits = logs.size()
+            pageInfoList.add(pageInfo)
+        }
+        return pageInfoList
     }
 
 }

@@ -1,4 +1,4 @@
-<div id="page2" class="clearfix" style="display: none">
+<div id="page1" class="clearfix" style="display: none">
     <div class="yellowBox clearfix ">
         <div class="nav"><img src="${resource(dir: 'images', file: 'ip.jpeg')}" alt="ip" height="20" width="20" class="imgClass">IP Information
             <a href="#" class="click" id="1">Click To Show/Hide</a>

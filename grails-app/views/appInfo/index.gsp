@@ -248,14 +248,12 @@ td {
 <div class="roundedCorner whitebox marginTob clearfix" id="tabs">
 
     <ul id="tabMenu" class="clearfix clear">
-        <li><span id="tab0" class="active" onclick="tabClick(0);">Application Statistics</span></li>
-        <li><span id="tab1" onclick="tabClick(1);">Visitor Statistics</span></li>
-        <li><span id="tab2" onclick="tabClick(2);">Server Information</span></li>
-        <li><span id="tab3" onclick="tabClick(3);">Server Console</span></li>
+        <li><span id="tab0" class="active" onclick="tabClick(0);">Statistics</span></li>
+        <li><span id="tab1" onclick="tabClick(1);">Server Information</span></li>
+        <li><span id="tab2" onclick="tabClick(2);">Server Console</span></li>
     </ul>
 
-    <g:render template="applicationInfo" model="[applicationStats: applicationStats]"/>
-    <g:render template="userInfo" model="[totalVisitorStats: totalVisitorStats]"/>
+    <g:render template="stats" model="[stats: totalVisitorStats,pageInfoList:pageInfoList,controllerAndActionList:controllerAndActionList,controllerInfoList:controllerInfoList]"/>
     <g:render template="serverInfo" model="[cpuInfo: cpuInfo, memInfo: memInfo, serverInformation: serverInformation]"/>
     <g:render template="console" model="[workingDir: workingDir]"/>
 

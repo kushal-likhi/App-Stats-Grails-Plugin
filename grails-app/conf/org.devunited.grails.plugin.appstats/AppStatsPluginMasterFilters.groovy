@@ -7,18 +7,22 @@ class AppStatsPluginMasterFilters {
     def filters = {
         all(controller: '*', action: '*') {
             before = {
+                def controllerClass = grailsApplication.controllerClasses.find {it.logicalPropertyName == controllerName}
+                String currentAction = actionName ?: controllerClass.defaultActionName
                 profilerService.registerRequestToProfiler(
                         request,
                         controllerName,
-                        actionName,
+                        currentAction,
                         params
                 )
             }
             after = {
+                def controllerClass = grailsApplication.controllerClasses.find {it.logicalPropertyName == controllerName}
+                String currentAction = actionName ?: controllerClass.defaultActionName
                 profilerService.registerRequestToProfiler(
                         request,
                         controllerName,
-                        actionName,
+                        currentAction,
                         params
                 )
             }

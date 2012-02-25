@@ -28,25 +28,7 @@ class ProfilerService {
             requestLog.timeEnd = System.currentTimeMillis()
             requestLog.save(flush: true)
         }
-        /*setSessionForVisitsOfAPerson(request.getRemoteAddr())*/
     }
-
-    /*public void setSessionForVisitsOfAPerson(String clientIP) {
-        HttpSession session = getSession()
-        if (session.userVisit == null) {
-            session.userVisit = clientIP
-            UserVisit userVisit = UserVisit.findByClientIP(clientIP)
-            if (userVisit) {
-                userVisit.visitCount = userVisit.visitCount + 1
-                userVisit.save(flush: true)
-            } else {
-                userVisit = new UserVisit()
-                userVisit.clientIP = clientIP
-                userVisit.visitCount = 1
-                userVisit.save(flush: true)
-            }
-        }
-    }*/
 
     public void registerRequestToProfiler(request, String controllerName, String actionName, Map params) {
         if (request.isStatsProfiled) {
