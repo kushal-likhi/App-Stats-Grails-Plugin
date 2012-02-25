@@ -2,10 +2,12 @@ package org.devunited.grails.plugin.appstats
 
 import org.codehaus.groovy.grails.commons.DefaultGrailsControllerClass
 
-class AppStatsController {
+class AppInfoController {
     def serverInformationService
     def consoleService
     def appStatsService
+
+    static defaultAction = "index"
 
 
     def index = {
