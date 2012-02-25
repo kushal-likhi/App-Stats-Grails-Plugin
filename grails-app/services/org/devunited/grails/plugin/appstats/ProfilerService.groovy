@@ -3,7 +3,6 @@ package org.devunited.grails.plugin.appstats
 import grails.converters.JSON
 import org.springframework.web.context.request.RequestContextHolder
 import javax.servlet.http.HttpSession
-import org.hibernate.Session
 
 class ProfilerService {
 
@@ -19,8 +18,9 @@ class ProfilerService {
                     controller: request.AS_hops.get(0).controller,
                     timeStart: request.AS_hops.get(0).startTime,
                     timeEnd: System.currentTimeMillis(),
-                    hopsJSON: generateHopsJSON(request.AS_hops)
-            ).save(flush: true).id
+                    hopsJSON: generateHopsJSON(request.AS_hops),
+                    initialParams: request.AS_params
+            ).save(flush: true, failOnError: true).id
         } else {
             RequestLog requestLog = RequestLog.get(request.AS_RecordId.toLong())
             requestLog.hopsJSON = generateHopsJSON(request.AS_hops)
@@ -52,7 +52,7 @@ class ProfilerService {
         if (request.isStatsProfiled) {
             request.AS_hops.add([
                     controller: controllerName,
-                    action: actionName,
+                    action: actionName ?: 'defaultAction',
                     startTime: System.currentTimeMillis()
             ])
         } else {
@@ -60,7 +60,7 @@ class ProfilerService {
             request.AS_RecordId = false
             request.AS_hops = [[
                     controller: controllerName,
-                    action: actionName,
+                    action: actionName ?: 'defaultAction',
                     startTime: System.currentTimeMillis()
             ]]
             request.AS_params = params

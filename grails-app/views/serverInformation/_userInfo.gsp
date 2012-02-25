@@ -18,11 +18,11 @@
                             <tbody>
                             <tr>
                                 <td bgcolor="#ccccdd">&nbsp;</td>
-                                <td width="17%" bgcolor="#ffb055">Unique visitors</td>
-                                <td width="17%" bgcolor="#f8e880">Number of visits</td>
-                                <td width="17%" bgcolor="#4477dd">Pages</td>
-                                <td width="17%" bgcolor="#66f0ff">Hits</td>
-                                <td width="17%" bgcolor="#2ea495">Bandwidth</td>
+                                <td width="20%" bgcolor="#ffb055">Unique visitors</td>
+                                <td width="20%" bgcolor="#f8e880">Number of visits</td>
+                                <td width="20%" bgcolor="#4477dd">Pages</td>
+                                <td width="20%" bgcolor="#66f0ff">Hits</td>
+                                %{--<td width="17%" bgcolor="#2ea495">Bandwidth</td>--}%
                             </tr>
                             <tr>
                                 <td class="appStats">Traffic &nbsp;</td>
@@ -30,7 +30,7 @@
                                 <td><b>${totalVisitorStats.noOfVisits}</b></td>
                                 <td><b></b></td>
                                 <td><b>${totalVisitorStats.totalHits}</b></td>
-                                <td><b></b></td>
+                                %{--<td><b></b></td>--}%
                             </tr>
                             </tbody>
                         </table>
@@ -56,7 +56,7 @@
                                                 <td width="80" bgcolor="#f8e880">Number of visits</td>
                                                 <td width="80" bgcolor="#4477dd">Pages</td>
                                                 <td width="80" bgcolor="#66f0ff">Hits</td>
-                                                <td width="80" bgcolor="#2ea495">Bandwidth</td>
+                                                %{--<td width="80" bgcolor="#2ea495">Bandwidth</td>--}%
                                             </tr>
                                             </tbody>
                                         </table>
